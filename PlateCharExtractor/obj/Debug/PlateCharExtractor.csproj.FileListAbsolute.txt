@@ -34,3 +34,33 @@ D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.pdb
 C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\ZoomableImageView.g.cs
 C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\ZoomableImageView.baml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\PlateCharExtractor.exe
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\PlateCharExtractor.pdb
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\CommonServiceLocator.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\System.Windows.Interactivity.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\ThumbnailSharp.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.xml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\ThumbnailSharp.xml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csprojResolveAssemblyReference.cache
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\ZoomableImageView.g.cs
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\MainWindow.g.cs
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\App.g.cs
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor_MarkupCompile.cache
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor_MarkupCompile.lref
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\App.baml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\ZoomableImageView.baml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\MainWindow.baml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.g.resources
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.Properties.Resources.resources
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csproj.GenerateResource.cache
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csproj.CoreCompileInputs.cache
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csproj.CopyComplete
