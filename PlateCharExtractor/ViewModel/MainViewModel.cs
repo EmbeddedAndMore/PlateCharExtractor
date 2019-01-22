@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,12 +34,12 @@ namespace PlateCharExtractor.ViewModel
             set
             {
                 _selectedThumbnail = value;
-                OnOperatingImage = _selectedThumbnail.ThumbAddr;
-                RaisePropertyChanged(()=>OnOperatingImage);
+                UnderOperationImage = new BitmapImage(new Uri(_selectedThumbnail.ThumbAddr));
+                RaisePropertyChanged(()=>UnderOperationImage);
             }
         }
 
-        public string OnOperatingImage { get; set; }
+        public ImageSource UnderOperationImage { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -52,7 +53,7 @@ namespace PlateCharExtractor.ViewModel
             {
                 ThumbnaiList = new List<ThumbnailModel>();
                 ThumbnaiList.AddRange(GenerateThumbnails());
-
+                UnderOperationImage = null;
 
             }
         }

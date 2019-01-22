@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlateCharExtractor"
-        xmlns:controls="clr-namespace:PlateLetterExtractor.Controls"
+        xmlns:controls="clr-namespace:PlateCharExtractor.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -22,8 +22,18 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <controls:ZoomableImageView Grid.Column="1" SourceImage="{Binding UnderOperationImage}"/>
+            <!--<controls:ZoomBorder x:Name="boarder" Grid.Column="1" ClipToBounds="True" Background="LightGray" >
+                
+            </controls:ZoomBorder>-->
+            <Grid Grid.Column="1">
+                <Canvas  Background="Transparent" >
+                <ScrollViewer ClipToBounds="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Image  Source="{Binding OnOperatingImage}" Stretch="None"/>
+                    
+                </ScrollViewer>
+                
+                </Canvas>
+            </Grid>
         </Grid>
-
     </Grid>
 </Window>
