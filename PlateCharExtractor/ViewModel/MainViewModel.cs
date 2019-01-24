@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -41,6 +44,19 @@ namespace PlateCharExtractor.ViewModel
 
         public ImageSource UnderOperationImage { get; set; }
 
+        private Point? _mousePositionOnImg;
+
+        public Point? MousePositionOnImg
+        {
+            get => _mousePositionOnImg;
+            set
+            {
+                _mousePositionOnImg = value; 
+                if(value.HasValue)
+                    Debug.WriteLine(value.Value.X + "  " + value.Value.Y);
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -79,6 +95,21 @@ namespace PlateCharExtractor.ViewModel
                 images.Add(new ThumbnailModel(){ThumbAddr = image, Thumbnail = imageSource});
             }
             return images;
+        }
+
+        
+    
+        public void Rectangle_MouseDown(MouseButtonEventArgs e)
+        {
+            
+        }
+        public void Rectangle_MouseMove(MouseButtonEventArgs e)
+        {
+
+        }
+        public void Rectangle_MouseUp(MouseButtonEventArgs e)
+        {
+
         }
     }
 }
