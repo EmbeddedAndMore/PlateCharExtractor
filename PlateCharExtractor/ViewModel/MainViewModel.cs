@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using PlateCharExtractor.Controls;
 using PlateCharExtractor.Model;
 using ThumbnailSharp;
 
@@ -28,9 +30,11 @@ namespace PlateCharExtractor.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        public List<ThumbnailModel> ThumbnaiList{ get; set; }
-        private ThumbnailModel _selectedThumbnail;
 
+
+        public List<ThumbnailModel> ThumbnaiList{ get; set; }
+
+        private ThumbnailModel _selectedThumbnail;
         public ThumbnailModel SelectedThumbnail
         {
             get => _selectedThumbnail;
@@ -41,11 +45,11 @@ namespace PlateCharExtractor.ViewModel
                 RaisePropertyChanged(()=>UnderOperationImage);
             }
         }
-
+    
         public ImageSource UnderOperationImage { get; set; }
 
-        private Point? _mousePositionOnImg;
 
+        private Point? _mousePositionOnImg;
         public Point? MousePositionOnImg
         {
             get => _mousePositionOnImg;
@@ -57,9 +61,19 @@ namespace PlateCharExtractor.ViewModel
             }
         }
 
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
+        public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseDown { get; private set;}
+        public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseMove { get; private set; }
+        public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseUp { get; private set; }
+
+
+        public CharSelector PlateCharSelector { get; set; }
+        public Thickness LeftTopMargin { get; set; }
+
+        public bool ImageControlFocused { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the MainViewModel class.
+    /// </summary>
         public MainViewModel()
         {
             if (IsInDesignMode)
@@ -71,45 +85,59 @@ namespace PlateCharExtractor.ViewModel
                 ThumbnaiList.AddRange(GenerateThumbnails());
                 UnderOperationImage = null;
 
+                PlateDetector_MouseDown = new RelayCommand<MouseButtonEventArgs>(ev => ShowPlateSelector_MouseDown(ev));
+                PlateDetector_MouseMove = new RelayCommand<MouseButtonEventArgs>(ev => ShowPlateSelector_MouseMove(ev));
+                PlateDetector_MouseUp = new RelayCommand<MouseButtonEventArgs>(ev => ShowPlateSelector_MouseUp(ev));
+                LeftTopMargin = new Thickness(20, 20, 0, 0);
+
+                ImageControlFocused = false;
             }
         }
 
-
+       
 
         private List<ThumbnailModel> GenerateThumbnails()
         {
-            List<string> imageAddrs = Directory.GetFiles(@"C:\Users\Mohamad\Desktop\thumbs", "*.jpg").ToList();
+            List<string> imageAddrs = Directory.GetFiles(@"C:\Users\Mohammad\Desktop\Plate Images", "*.jpg").ToList();
             List<ThumbnailModel> images = new List<ThumbnailModel>();
             foreach (var image in imageAddrs)
             {
-                Stream resultStream = new ThumbnailCreator().CreateThumbnailStream(
-                    thumbnailSize: 200,
+                using (Stream resultStream = new ThumbnailCreator().CreateThumbnailStream(
+                    thumbnailSize: 50,
                     imageFileLocation: image,
-                    imageFormat: Format.Jpeg
-                );
-                var imageSource = new BitmapImage();
+                    imageFormat: Format.Png
+                ))
+                {
+                    var imageSource = new BitmapImage();
                     imageSource.BeginInit();
                     imageSource.StreamSource = resultStream;
                     imageSource.EndInit();
                     ImageSource src = imageSource;
-                images.Add(new ThumbnailModel(){ThumbAddr = image, Thumbnail = imageSource});
+                    images.Add(new ThumbnailModel() { ThumbAddr = image, Thumbnail = imageSource });
+
+                    UnderOperationImage = imageSource;
+                    RaisePropertyChanged(() => UnderOperationImage);
+                }
             }
             return images;
         }
 
-        
-    
-        public void Rectangle_MouseDown(MouseButtonEventArgs e)
+        private void ShowPlateSelector_MouseDown(MouseButtonEventArgs ev)
         {
+            ImageControlFocused = true;
+            RaisePropertyChanged(() => ImageControlFocused);
+
             
         }
-        public void Rectangle_MouseMove(MouseButtonEventArgs e)
+        private void ShowPlateSelector_MouseMove(MouseButtonEventArgs ev)
         {
 
         }
-        public void Rectangle_MouseUp(MouseButtonEventArgs e)
+        private void ShowPlateSelector_MouseUp(MouseButtonEventArgs ev)
         {
 
         }
+
+
     }
 }

@@ -17,15 +17,11 @@ D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\ThumbnailSharp.xml
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csprojResolveAssemblyReference.cache
-D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\ZoomableImageView.g.cs
-D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\MainWindow.g.cs
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\App.g.cs
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor_MarkupCompile.cache
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor_MarkupCompile.lref
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\App.baml
-D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\ZoomableImageView.baml
-D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\MainWindow.baml
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.g.resources
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.Properties.Resources.resources
 D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csproj.GenerateResource.cache
@@ -64,3 +60,9 @@ C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateC
 C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.csproj.CopyComplete
 C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.exe
 C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\obj\Debug\PlateCharExtractor.pdb
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\ZoomAndPan.dll
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\bin\Debug\ZoomAndPan.pdb
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\View\MainWindow.g.cs
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\View\MainWindow.baml
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\CharSelector.g.cs
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\Controls\CharSelector.baml

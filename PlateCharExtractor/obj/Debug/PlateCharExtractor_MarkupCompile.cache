@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\obj\Debug\
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\obj\Debug\
 PlateCharExtractor
 none
 false
 DEBUG;TRACE
-C:\Users\Mohamad\Documents\Visual Studio 2017\Projects\PlateCharExtractor\PlateCharExtractor\App.xaml
-1-1711142684
+D:\AI Project\PlateCharExtractor\PlateCharExtractor\App.xaml
+2-314622669
 
-91964907744
-71-82013023
-View\MainWindow.xaml;
+11-1018771109
+711329576443
+Controls\CharSelector.xaml;View\MainWindow.xaml;
 
 False
 

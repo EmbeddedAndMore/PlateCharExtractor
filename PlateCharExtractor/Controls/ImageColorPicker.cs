@@ -67,7 +67,7 @@ namespace PlateCharExtractor.Controls
             // Render the SelectorDrawing
             drawingContext.PushTransform(new TranslateTransform(Position.X, Position.Y));
             if (Scale > 0) drawingContext.PushTransform(new ScaleTransform(1 / Scale, 1 / Scale));
-            drawingContext.DrawDrawing(Selector);
+            //drawingContext.DrawDrawing(Selector);
             drawingContext.Pop();
         }
 

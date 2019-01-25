@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:PlateCharExtractor"
         xmlns:zoomAndPan="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
         xmlns:controls="clr-namespace:PlateCharExtractor.Controls"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
+        xmlns:GalaSoft_MvvmLight_Command1="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -19,24 +21,44 @@
             <ListView ItemsSource="{Binding ThumbnaiList}" SelectedItem="{Binding SelectedThumbnail}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding ThumbAddr}" Width="180" Height="100" Margin="5"/>
+                        <Image Source="{Binding ThumbAddr}" Width="180" Height="100" Margin="5" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <zoomAndPan:ZoomAndPanScrollViewer Name="ZoomAndPanControl"
-                                               Grid.Column="1"
-                                               Background="#AACCCCCC"
-                                               MinimumZoomType="FitScreen"
-                                               UseAnimations="{Binding ElementName=AnimationsCheckBox, Path=IsChecked}"
-                                               ZoomAndPanInitialPosition="FitScreen"
-                                               MousePosition="{Binding MousePositionOnImg, Mode=TwoWay}">
 
-                <controls:ImageColorPicker x:Name="ActualContent"
+            <ScrollViewer x:Name="scroller"
+                      Grid.Column="1"
+                      CanContentScroll="True"
+                      HorizontalScrollBarVisibility="Visible"
+                      VerticalScrollBarVisibility="Visible">
+                <zoomAndPan:ZoomAndPanControl Name="ZoomAndPanControl"
+                                          Background="#AACCCCCC"
+                                          MinimumZoomType="FitScreen"
+                                          UseAnimations="{Binding ElementName=AnimationsCheckBox, Path=IsChecked}"
+                                          ZoomAndPanInitialPosition="FitScreen"
+                                              MousePosition="{Binding MousePositionOnImg, Mode=TwoWay}">
+                    
+                    
+
+                    <Grid x:Name="theGrid">
+                        
+                        <controls:ImageColorPicker x:Name="ActualContent"
                                         Scale="{Binding ElementName=ZoomAndPanControl, Path=ViewportZoom}"
-                                        Source="{Binding UnderOperationImage}" />
+                                        Source="{Binding UnderOperationImage}"
+                                        local:FocusExtension.IsFocused ="{Binding ImageControlFocused}"/>
+                        <Canvas Width="{Binding ElementName=ActualContent, Path=ActualWidth}" 
+                                Height="{Binding ElementName=ActualContent, Path=ActualHeight}" Background="Transparent">
+                            <controls:CharSelector Width="500" Height="500"
+                                               MouseDown="CharSelector_MouseDown" MouseMove="CharSelector_MouseMove" MouseUp="CharSelector_MouseUp"/>
 
-            </zoomAndPan:ZoomAndPanScrollViewer>
+
+                        </Canvas>
+                    </Grid>
+                    
+                </zoomAndPan:ZoomAndPanControl>
+
+            </ScrollViewer>
 
         </Grid>
     </Grid>
