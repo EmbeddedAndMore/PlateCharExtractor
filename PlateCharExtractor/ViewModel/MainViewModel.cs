@@ -56,8 +56,8 @@ namespace PlateCharExtractor.ViewModel
             set
             {
                 _mousePositionOnImg = value; 
-                if(value.HasValue)
-                    Debug.WriteLine(value.Value.X + "  " + value.Value.Y);
+                //if(value.HasValue)
+                //    Debug.WriteLine(value.Value.X + "  " + value.Value.Y);
             }
         }
 
@@ -84,11 +84,6 @@ namespace PlateCharExtractor.ViewModel
                 ThumbnaiList = new List<ThumbnailModel>();
                 ThumbnaiList.AddRange(GenerateThumbnails());
                 UnderOperationImage = null;
-
-                PlateDetector_MouseDown = new RelayCommand<MouseButtonEventArgs>(ev => ShowPlateSelector_MouseDown(ev));
-                PlateDetector_MouseMove = new RelayCommand<MouseButtonEventArgs>(ev => ShowPlateSelector_MouseMove(ev));
-                PlateDetector_MouseUp = new RelayCommand<MouseButtonEventArgs>(ev => ShowPlateSelector_MouseUp(ev));
-                LeftTopMargin = new Thickness(20, 20, 0, 0);
 
                 ImageControlFocused = false;
             }
@@ -121,23 +116,5 @@ namespace PlateCharExtractor.ViewModel
             }
             return images;
         }
-
-        private void ShowPlateSelector_MouseDown(MouseButtonEventArgs ev)
-        {
-            ImageControlFocused = true;
-            RaisePropertyChanged(() => ImageControlFocused);
-
-            
-        }
-        private void ShowPlateSelector_MouseMove(MouseButtonEventArgs ev)
-        {
-
-        }
-        private void ShowPlateSelector_MouseUp(MouseButtonEventArgs ev)
-        {
-
-        }
-
-
     }
 }

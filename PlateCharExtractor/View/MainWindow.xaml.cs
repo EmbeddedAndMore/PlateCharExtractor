@@ -1,6 +1,7 @@
 ﻿using PlateCharExtractor.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,8 +72,12 @@ namespace PlateCharExtractor
             _origContentMouseDownPoint = curContentPoint;
 
             var rectangle = (CharSelector)sender;
-            Canvas.SetLeft(rectangle, Canvas.GetLeft(rectangle) + rectangleDragVector.X);
-            Canvas.SetTop(rectangle, Canvas.GetTop(rectangle) + rectangleDragVector.Y);
+            double LeftLength = Canvas.GetLeft(rectangle) + rectangleDragVector.X;
+            double TopLength = Canvas.GetTop(rectangle) + rectangleDragVector.Y;
+            Canvas.SetLeft(rectangle, LeftLength);
+            Canvas.SetTop(rectangle, TopLength);
+
+            Debug.WriteLine(Canvas.GetLeft(rectangle) + "  " + Canvas.GetTop(rectangle));
 
             e.Handled = true;
         }

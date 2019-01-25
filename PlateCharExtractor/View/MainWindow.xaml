@@ -45,13 +45,24 @@
                         
                         <controls:ImageColorPicker x:Name="ActualContent"
                                         Scale="{Binding ElementName=ZoomAndPanControl, Path=ViewportZoom}"
-                                        Source="{Binding UnderOperationImage}"
-                                        local:FocusExtension.IsFocused ="{Binding ImageControlFocused}"/>
+                                        Source="{Binding UnderOperationImage}"/>
                         <Canvas Width="{Binding ElementName=ActualContent, Path=ActualWidth}" 
                                 Height="{Binding ElementName=ActualContent, Path=ActualHeight}" Background="Transparent">
                             <controls:CharSelector Width="500" Height="500"
-                                               MouseDown="CharSelector_MouseDown" MouseMove="CharSelector_MouseMove" MouseUp="CharSelector_MouseUp"/>
-
+                                               MouseDown="CharSelector_MouseDown" 
+                                               MouseMove="CharSelector_MouseMove" 
+                                               MouseUp="CharSelector_MouseUp"
+                                                   Canvas.Top="50"
+                                                   Canvas.Left="200"/>
+                            <!--<Rectangle Canvas.Left="50"
+                                   Canvas.Top="50"
+                                   Width="550"
+                                   Height="550"
+                                   Fill="Blue"
+                                   Cursor="Hand"
+                                   MouseDown="CharSelector_MouseDown"
+                                   MouseMove="CharSelector_MouseMove"
+                                   MouseUp="CharSelector_MouseUp" />-->
 
                         </Canvas>
                     </Grid>
