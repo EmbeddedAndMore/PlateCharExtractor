@@ -56,9 +56,9 @@
                 <ListView ItemsSource="{Binding ThumbnaiList}" SelectedItem="{Binding SelectedThumbnail}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Image Width="180" Height="100" Margin="5">
+                            <Image Width="180" Height="100" Margin="5" >
                                 <Image.Source>
-                                    <BitmapImage DecodePixelWidth="180" DecodePixelHeight="100" UriSource="{Binding ThumbAddr}"/>
+                                    <BitmapImage DecodePixelWidth="180" DecodePixelHeight="100" UriSource="{Binding ThumbAddr}" CacheOption="OnLoad"/>
                                 </Image.Source>
                             </Image>
                         </DataTemplate>
