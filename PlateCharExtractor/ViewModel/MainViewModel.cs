@@ -65,15 +65,13 @@ namespace PlateCharExtractor.ViewModel
         public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseMove { get; private set; }
         public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseUp { get; private set; }
 
+        public List<Tuple<double, double, double>> PlateSelectorGridSizes { get; set; }
 
-        public CharSelector PlateCharSelector { get; set; }
-        public Thickness LeftTopMargin { get; set; }
+        public RelayCommand SubmitCommand { get; private set; }
 
-        public bool ImageControlFocused { get; set; }
-
-    /// <summary>
-    /// Initializes a new instance of the MainViewModel class.
-    /// </summary>
+        /// <summary>
+        /// Initializes a new instance of the MainViewModel class.
+        /// </summary>
         public MainViewModel()
         {
             if (IsInDesignMode)
@@ -84,9 +82,13 @@ namespace PlateCharExtractor.ViewModel
                 ThumbnaiList = Directory.GetFiles(@"C:\Users\Mohamad\Desktop\thumbs", "*.jpg")
                     .Select(x => new ThumbnailModel() {ThumbAddr = x}).ToList();
                 UnderOperationImage = null;
-
-                ImageControlFocused = false;
+                SubmitCommand = new RelayCommand(SubmitSelector);
             }
+        }
+
+        public void SubmitSelector()
+        {
+            List<Tuple<double, double, double>> plateSelectorGridSizes = PlateSelectorGridSizes;
         }
     }
 }

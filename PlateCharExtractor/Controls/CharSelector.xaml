@@ -10,7 +10,7 @@
 
     
     <Border BorderThickness="2" BorderBrush="White">
-        <Grid>
+        <Grid Name="PlateSelectorGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="2"/>

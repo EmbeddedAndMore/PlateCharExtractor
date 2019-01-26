@@ -48,17 +48,25 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ListView ItemsSource="{Binding ThumbnaiList}" SelectedItem="{Binding SelectedThumbnail}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Image Width="180" Height="100" Margin="5">
-                            <Image.Source>
-                                <BitmapImage DecodePixelWidth="180" DecodePixelHeight="100" UriSource="{Binding ThumbAddr}"/>
-                            </Image.Source>
-                        </Image>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <ListView ItemsSource="{Binding ThumbnaiList}" SelectedItem="{Binding SelectedThumbnail}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Width="180" Height="100" Margin="5">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelWidth="180" DecodePixelHeight="100" UriSource="{Binding ThumbAddr}"/>
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Grid.Row="1" Content="Generate" Command="{Binding SubmitCommand}"/>
+            </Grid>
+
 
 
             <ScrollViewer x:Name="scroller"
@@ -72,11 +80,11 @@
                                           UseAnimations="{Binding ElementName=AnimationsCheckBox, Path=IsChecked}"
                                           ZoomAndPanInitialPosition="FitScreen"
                                               MousePosition="{Binding MousePositionOnImg, Mode=TwoWay}">
-                    
-                    
+
+
 
                     <Grid x:Name="theGrid">
-                        
+
                         <controls:ImageColorPicker x:Name="ActualContent"
                                         Scale="{Binding ElementName=ZoomAndPanControl, Path=ViewportZoom}"
                                         Source="{Binding UnderOperationImage}"/>
@@ -94,10 +102,10 @@
                                             MouseUp="CharSelector_MouseUp"
                                             >
 
-                                <controls:CharSelector />
+                                <controls:CharSelector SelectorGridSizes="{Binding PlateSelectorGridSizes , Mode=TwoWay}"/>
 
                             </ContentControl>
-                            
+
                             <!--<Rectangle Canvas.Left="50"
                                    Canvas.Top="50"
                                    Width="550"
@@ -110,11 +118,8 @@
 
                         </Canvas>
                     </Grid>
-                    
                 </zoomAndPan:ZoomAndPanControl>
-
             </ScrollViewer>
-
         </Grid>
     </Grid>
 </Window>
