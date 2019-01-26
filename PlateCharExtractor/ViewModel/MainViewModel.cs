@@ -81,40 +81,12 @@ namespace PlateCharExtractor.ViewModel
             }
             else
             {
-                ThumbnaiList = new List<ThumbnailModel>();
-                ThumbnaiList.AddRange(GenerateThumbnails());
+                ThumbnaiList = Directory.GetFiles(@"C:\Users\Mohamad\Desktop\thumbs", "*.jpg")
+                    .Select(x => new ThumbnailModel() {ThumbAddr = x}).ToList();
                 UnderOperationImage = null;
 
                 ImageControlFocused = false;
             }
-        }
-
-       
-
-        private List<ThumbnailModel> GenerateThumbnails()
-        {
-            List<string> imageAddrs = Directory.GetFiles(@"C:\Users\Mohammad\Desktop\Plate Images", "*.jpg").ToList();
-            List<ThumbnailModel> images = new List<ThumbnailModel>();
-            foreach (var image in imageAddrs)
-            {
-                using (Stream resultStream = new ThumbnailCreator().CreateThumbnailStream(
-                    thumbnailSize: 50,
-                    imageFileLocation: image,
-                    imageFormat: Format.Png
-                ))
-                {
-                    var imageSource = new BitmapImage();
-                    imageSource.BeginInit();
-                    imageSource.StreamSource = resultStream;
-                    imageSource.EndInit();
-                    ImageSource src = imageSource;
-                    images.Add(new ThumbnailModel() { ThumbAddr = image, Thumbnail = imageSource });
-
-                    UnderOperationImage = imageSource;
-                    RaisePropertyChanged(() => UnderOperationImage);
-                }
-            }
-            return images;
         }
     }
 }
