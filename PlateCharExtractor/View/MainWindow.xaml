@@ -68,49 +68,63 @@
             </Grid>
 
 
-
-            <ScrollViewer x:Name="scroller"
-                      Grid.Column="1"
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="33"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer x:Name="scroller"
+                      Grid.Column="0"
+                              Grid.Row="0"
                       CanContentScroll="True"
                       HorizontalScrollBarVisibility="Visible"
                       VerticalScrollBarVisibility="Visible">
-                <zoomAndPan:ZoomAndPanControl Name="ZoomAndPanControl"
+                    <zoomAndPan:ZoomAndPanControl Name="ZoomAndPanControl"
                                           Background="#AACCCCCC"
                                           MinimumZoomType="FitScreen"
                                           UseAnimations="{Binding ElementName=AnimationsCheckBox, Path=IsChecked}"
-                                          ZoomAndPanInitialPosition="Default"
-                                              MousePosition="{Binding MousePositionOnImg, Mode=TwoWay}">
+                                          ZoomAndPanInitialPosition="FitScreen"
+                                          MousePosition="{Binding MousePositionOnImg, Mode=TwoWay}"
+                                          ViewportZoom="{Binding ScaleValue, Mode=TwoWay}">
 
 
 
-                    <Grid x:Name="theGrid">
+                        <Grid x:Name="theGrid">
 
-                        <controls:ImageColorPicker x:Name="ActualContent"
+                            <controls:ImageColorPicker x:Name="ActualContent"
                                         Scale="{Binding ElementName=ZoomAndPanControl, Path=ViewportZoom}"
-                                        Source="{Binding UnderOperationImage}"/>
-                        <Canvas Width="{Binding ElementName=ActualContent, Path=ActualWidth}" 
+                                        Source="{Binding UnderOperationImage}">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SizeChanged">
+                                        <GalaSoft_MvvmLight_Command1:EventToCommand Command="{Binding Mode=OneWay, Path=OnSizeChangeCommand}"
+                                        PassEventArgsToCommand="True" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </controls:ImageColorPicker>
+                            <Canvas Width="{Binding ElementName=ActualContent, Path=ActualWidth}" 
                                 Height="{Binding ElementName=ActualContent, Path=ActualHeight}" Background="Transparent">
-                            <ContentControl Width="500"
+                                <ContentControl Width="500"
                                             MinWidth="50"
                                             Height="500"
                                             MinHeight="50"
-                                            Canvas.Top="{Binding CharSelectorTop}"
-                                            Canvas.Left="{Binding CharSelectorLeft}"
+                                            Canvas.Top="{Binding CharSelectorTop, Mode=TwoWay}"
+                                            Canvas.Left="{Binding CharSelectorLeft, Mode=TwoWay}"
                                             Template="{StaticResource DesignerItemTemplate}"
                                             MouseDown="CharSelector_MouseDown" 
                                             MouseMove="CharSelector_MouseMove" 
-                                            MouseUp="CharSelector_MouseUp"
-                                            >
+                                            MouseUp="CharSelector_MouseUp">
 
-                                <controls:CharSelector RenderTransformOrigin="0.5,0.5" SelectorGridSizes="{Binding PlateSelectorGridSizes , Mode=TwoWay}">
-                                    <controls:CharSelector.RenderTransform>
-                                        <RotateTransform  Angle="{Binding CharSelectorRotationAngle, Mode=TwoWay}"/>
-                                    </controls:CharSelector.RenderTransform>
-                                </controls:CharSelector>
+                                    <controls:CharSelector RenderTransformOrigin="0.5,0.5" SelectorGridSizes="{Binding PlateSelectorGridSizes , Mode=TwoWay}">
+                                        <controls:CharSelector.RenderTransform>
+                                            <RotateTransform  Angle="{Binding CharSelectorRotationAngle, Mode=TwoWay}"/>
+                                        </controls:CharSelector.RenderTransform>
+                                    </controls:CharSelector>
 
-                            </ContentControl>
+                                </ContentControl>
 
-                            <!--<Rectangle Canvas.Left="50"
+                                <!--<Rectangle Canvas.Left="50"
                                    Canvas.Top="50"
                                    Width="550"
                                    Height="550"
@@ -120,10 +134,17 @@
                                    MouseMove="CharSelector_MouseMove"
                                    MouseUp="CharSelector_MouseUp" />-->
 
-                        </Canvas>
-                    </Grid>
-                </zoomAndPan:ZoomAndPanControl>
-            </ScrollViewer>
+                            </Canvas>
+                        </Grid>
+                    </zoomAndPan:ZoomAndPanControl>
+                </ScrollViewer>
+                <StatusBar Grid.Row="1" >
+                    <StatusBarItem>
+                        <Label Content="{Binding StatusText}"/>
+                    </StatusBarItem>
+                </StatusBar>
+            </Grid>
+            
         </Grid>
     </Grid>
 </Window>

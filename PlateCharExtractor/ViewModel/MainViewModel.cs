@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using PlateCharExtractor.Extentions;
 using PlateCharExtractor.Model;
 
 namespace PlateCharExtractor.ViewModel
@@ -37,12 +39,12 @@ namespace PlateCharExtractor.ViewModel
             set
             {
                 _selectedThumbnail = value;
-                UnderOperationImage = new BitmapImage(new Uri(_selectedThumbnail.ThumbAddr));
+                UnderOperationImage = ConvertBitmapTo96DPI(new BitmapImage(new Uri(_selectedThumbnail.ThumbAddr)));
                 RaisePropertyChanged(()=>UnderOperationImage);
             }
         }
     
-        public ImageSource UnderOperationImage { get; set; }
+        public BitmapSource UnderOperationImage { get; set; }
 
 
         private Point? _mousePositionOnImg;
@@ -51,9 +53,17 @@ namespace PlateCharExtractor.ViewModel
             get => _mousePositionOnImg;
             set
             {
-                _mousePositionOnImg = value; 
-                //if(value.HasValue)
-                //    Debug.WriteLine(value.Value.X + "  " + value.Value.Y);
+                _mousePositionOnImg = value;
+                if (value.HasValue)
+                {
+                    StatusText = value.Value.X + "," + value.Value.Y;
+                    RaisePropertyChanged(() => StatusText);
+                }
+                else
+                {
+                    StatusText = "0,0";
+                    RaisePropertyChanged(() => StatusText);
+                }
             }
         }
 
@@ -78,6 +88,19 @@ namespace PlateCharExtractor.ViewModel
             set { _charSelectorLeft = value; }
         }
 
+        private double _scaleValue;
+        public  double ScaleValue
+        {
+            get => _scaleValue;
+            set
+            {
+                _scaleValue = value;
+                Debug.WriteLine("Scale : " + value);
+            }
+        }
+
+
+        public string StatusText { get; set; }
         public List<Tuple<double, double, double>> PlateSelectorGridSizes { get; set; }
         
         public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseDown { get; private set;}
@@ -87,6 +110,13 @@ namespace PlateCharExtractor.ViewModel
         
 
         public RelayCommand SubmitCommand { get; private set; }
+        public RelayCommand<SizeChangedEventArgs> OnSizeChangeCommand { get; private set; }
+
+
+
+        private double _loadedImageWidth;
+
+        private double _loadedImageHeight;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -100,10 +130,11 @@ namespace PlateCharExtractor.ViewModel
             }
             else
             {
-                ThumbnaiList = Directory.GetFiles(@"C:\Users\Mohamad\Desktop\thumbs", "*.jpg")
+                ThumbnaiList = Directory.GetFiles(@"C:\Users\Mohammad\Desktop\Plate Images", "*.jpg")
                     .Select(x => new ThumbnailModel() {ThumbAddr = x}).ToList();
                 UnderOperationImage = null;
                 SubmitCommand = new RelayCommand(SubmitSelector);
+                OnSizeChangeCommand = new RelayCommand<SizeChangedEventArgs>((ev) => ActualContent_SizeChanged(ev));
                 CharSelectorTop = 50;
                 CharSelectorLeft = 50;
             }
@@ -113,19 +144,22 @@ namespace PlateCharExtractor.ViewModel
         {   // SumOfGaps, Width, Height
             List<Tuple<double, double, double>> plateSelectorGridSizes = PlateSelectorGridSizes;
             List<ImageSource> chars = new List<ImageSource>();
+            ImageSource unCropped = new BitmapImage(new Uri(_selectedThumbnail.ThumbAddr));
             int offset = 0;
             double startY = _charSelectorTop;
             double startX = _charSelectorLeft;
             for (int i = 0; i < plateSelectorGridSizes.Count; i++)
             {
-                offset += (int)plateSelectorGridSizes[i].Item1;
-                
+                offset = (int)plateSelectorGridSizes[i].Item1;
 
-                int width = (int) plateSelectorGridSizes[i].Item2;
+
+                int width = (int)plateSelectorGridSizes[i].Item2;
                 int height = (int)plateSelectorGridSizes[i].Item3;
 
-                var croppedImage = new CroppedBitmap((BitmapSource) UnderOperationImage,
-                    new Int32Rect((int) startX + offset, (int) startY, width, height));
+                int x = (int)startX + offset;
+                int y = (int)startY;
+                var croppedImage = new CroppedBitmap((BitmapSource)unCropped,
+                    new Int32Rect(x,y , width, height));
                  var encoder = new JpegBitmapEncoder();
                  encoder.Frames.Add(BitmapFrame.Create(croppedImage));
                  using (FileStream stream = new FileStream(@"D:\Cropped\cropped" + i + ".jpg", FileMode.Create))
@@ -134,6 +168,26 @@ namespace PlateCharExtractor.ViewModel
                 startX += width;
 
             }
+        }
+
+        public void ActualContent_SizeChanged(SizeChangedEventArgs e)
+        {
+            _loadedImageWidth = e.NewSize.Width;
+            _loadedImageHeight = e.NewSize.Height;
+        }
+
+
+        public static BitmapSource ConvertBitmapTo96DPI(BitmapImage bitmapImage)
+        {
+            double dpi = 96;
+            int width = bitmapImage.PixelWidth;
+            int height = bitmapImage.PixelHeight;
+
+            int stride = width * bitmapImage.Format.BitsPerPixel;
+            byte[] pixelData = new byte[stride * height];
+            bitmapImage.CopyPixels(pixelData, stride, 0);
+
+            return BitmapSource.Create(width, height, dpi, dpi, bitmapImage.Format, null, pixelData, stride);
         }
     }
 }

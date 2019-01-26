@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Controls\ImageColorPicker.cs" />
     <Compile Include="Controls\ResizeThumb.cs" />
+    <Compile Include="Extentions\ExtentionMethods.cs" />
     <Compile Include="Extentions\FocusExtension.cs" />
     <Compile Include="Model\ThumbnailModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -130,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Untitled.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

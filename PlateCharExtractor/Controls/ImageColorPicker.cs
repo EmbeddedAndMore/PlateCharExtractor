@@ -66,7 +66,8 @@ namespace PlateCharExtractor.Controls
 
             // Render the SelectorDrawing
             drawingContext.PushTransform(new TranslateTransform(Position.X, Position.Y));
-            if (Scale > 0) drawingContext.PushTransform(new ScaleTransform(1 / Scale, 1 / Scale));
+            if (Scale > 0)
+                drawingContext.PushTransform(new ScaleTransform(1 / Scale, 1 / Scale));
             //drawingContext.DrawDrawing(Selector);
             drawingContext.Pop();
         }
@@ -311,5 +312,7 @@ namespace PlateCharExtractor.Controls
         {
             return (value.CompareTo(min) < 0) ? min : value.CompareTo(max) > 0 ? max : value;
         }
+
+        
     }
 }
