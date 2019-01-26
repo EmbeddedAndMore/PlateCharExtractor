@@ -78,7 +78,7 @@
                                           Background="#AACCCCCC"
                                           MinimumZoomType="FitScreen"
                                           UseAnimations="{Binding ElementName=AnimationsCheckBox, Path=IsChecked}"
-                                          ZoomAndPanInitialPosition="FitScreen"
+                                          ZoomAndPanInitialPosition="Default"
                                               MousePosition="{Binding MousePositionOnImg, Mode=TwoWay}">
 
 

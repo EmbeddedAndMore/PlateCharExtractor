@@ -44,7 +44,7 @@ namespace PlateCharExtractor.Controls
 
 
         /// <summary>
-        /// offset, width, height
+        /// SumOfGaps, width, height
         /// </summary>
         /// <returns></returns>
         private List<Tuple<double, double, double>> GetPlateGridSizes()

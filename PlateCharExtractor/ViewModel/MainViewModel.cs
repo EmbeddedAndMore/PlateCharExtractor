@@ -110,8 +110,30 @@ namespace PlateCharExtractor.ViewModel
         }
 
         public void SubmitSelector()
-        {
+        {   // SumOfGaps, Width, Height
             List<Tuple<double, double, double>> plateSelectorGridSizes = PlateSelectorGridSizes;
+            List<ImageSource> chars = new List<ImageSource>();
+            int offset = 0;
+            double startY = _charSelectorTop;
+            double startX = _charSelectorLeft;
+            for (int i = 0; i < plateSelectorGridSizes.Count; i++)
+            {
+                offset += (int)plateSelectorGridSizes[i].Item1;
+                
+
+                int width = (int) plateSelectorGridSizes[i].Item2;
+                int height = (int)plateSelectorGridSizes[i].Item3;
+
+                var croppedImage = new CroppedBitmap((BitmapSource) UnderOperationImage,
+                    new Int32Rect((int) startX + offset, (int) startY, width, height));
+                 var encoder = new JpegBitmapEncoder();
+                 encoder.Frames.Add(BitmapFrame.Create(croppedImage));
+                 using (FileStream stream = new FileStream(@"D:\Cropped\cropped" + i + ".jpg", FileMode.Create))
+                    encoder.Save(stream);
+
+                startX += width;
+
+            }
         }
     }
 }
