@@ -54,7 +54,7 @@ namespace PlateCharExtractor
             if (_mouseDragging) return;
             _mouseDragging = true;
             _origContentMouseDownPoint = e.GetPosition(ActualContent);
-            ((CharSelector)sender).CaptureMouse();
+            ((ContentControl)sender).CaptureMouse();
             e.Handled = true;
         }
 
@@ -71,7 +71,7 @@ namespace PlateCharExtractor
 
             _origContentMouseDownPoint = curContentPoint;
 
-            var rectangle = (CharSelector)sender;
+            var rectangle = (ContentControl)sender;
             double LeftLength = Canvas.GetLeft(rectangle) + rectangleDragVector.X;
             double TopLength = Canvas.GetTop(rectangle) + rectangleDragVector.Y;
             Canvas.SetLeft(rectangle, LeftLength);
@@ -86,7 +86,7 @@ namespace PlateCharExtractor
         {
             if (!_mouseDragging) return;
             _mouseDragging = false;
-            ((CharSelector)sender).ReleaseMouseCapture();
+            ((ContentControl)sender).ReleaseMouseCapture();
             e.Handled = true;
         }
     }

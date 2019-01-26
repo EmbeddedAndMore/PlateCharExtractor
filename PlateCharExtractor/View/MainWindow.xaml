@@ -11,6 +11,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <ControlTemplate x:Key="ResizeDecoratorTemplate" TargetType="{x:Type Control}">
+            <Grid>
+                <controls:ResizeThumb Height="3" Cursor="SizeNS" Margin="0 -4 0 0"
+                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                <controls:ResizeThumb Width="3" Cursor="SizeWE" Margin="-4 0 0 0"
+                                   VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+                <controls:ResizeThumb Width="3" Cursor="SizeWE" Margin="0 0 -4 0"
+                                   VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                <controls:ResizeThumb Height="3" Cursor="SizeNS" Margin="0 0 0 -4"
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
+                <controls:ResizeThumb Width="7" Height="7" Cursor="SizeNWSE" Margin="-6 -6 0 0"
+                                   VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <controls:ResizeThumb Width="7" Height="7" Cursor="SizeNESW" Margin="0 -6 -6 0"
+                                   VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <controls:ResizeThumb Width="7" Height="7" Cursor="SizeNESW" Margin="-6 0 0 -6"
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <controls:ResizeThumb Width="7" Height="7" Cursor="SizeNWSE" Margin="0 0 -6 -6"
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="DesignerItemTemplate" TargetType="ContentControl">
+            <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                <controls:ResizeThumb Template="{StaticResource ResizeDecoratorTemplate}" Cursor="ArrowCD"/>
+                <ContentPresenter Content="{TemplateBinding ContentControl.Content}"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <!-- ResizeDecorator Template -->
     <Grid>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -52,12 +82,22 @@
                                         Source="{Binding UnderOperationImage}"/>
                         <Canvas Width="{Binding ElementName=ActualContent, Path=ActualWidth}" 
                                 Height="{Binding ElementName=ActualContent, Path=ActualHeight}" Background="Transparent">
-                            <controls:CharSelector Width="500" Height="500"
-                                               MouseDown="CharSelector_MouseDown" 
-                                               MouseMove="CharSelector_MouseMove" 
-                                               MouseUp="CharSelector_MouseUp"
-                                                   Canvas.Top="50"
-                                                   Canvas.Left="200"/>
+                            <ContentControl Width="500"
+                                            MinWidth="50"
+                                            Height="500"
+                                            MinHeight="50"
+                                            Canvas.Top="150"
+                                            Canvas.Left="470"
+                                            Template="{StaticResource DesignerItemTemplate}"
+                                            MouseDown="CharSelector_MouseDown" 
+                                            MouseMove="CharSelector_MouseMove" 
+                                            MouseUp="CharSelector_MouseUp"
+                                            >
+
+                                <controls:CharSelector />
+
+                            </ContentControl>
+                            
                             <!--<Rectangle Canvas.Left="50"
                                    Canvas.Top="50"
                                    Width="550"
