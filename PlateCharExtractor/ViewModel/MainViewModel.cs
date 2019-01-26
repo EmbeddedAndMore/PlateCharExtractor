@@ -62,11 +62,24 @@ namespace PlateCharExtractor.ViewModel
         }
 
         private int _charSelectorRotationAngle;
-
         public int CharSelectorRotationAngle
         {
             get => _charSelectorRotationAngle;
             set { _charSelectorRotationAngle = value; }
+        }
+
+        private double _charSelectorTop;
+        public double CharSelectorTop
+        {
+            get => _charSelectorTop;
+            set { _charSelectorTop = value; }
+        }
+
+        private double _charSelectorLeft;
+        public double CharSelectorLeft
+        {
+            get => _charSelectorLeft;
+            set { _charSelectorLeft = value; }
         }
 
         public List<Tuple<double, double, double>> PlateSelectorGridSizes { get; set; }
@@ -86,6 +99,8 @@ namespace PlateCharExtractor.ViewModel
         {
             if (IsInDesignMode)
             {
+                CharSelectorTop = 50;
+                CharSelectorLeft = 50;
             }
             else
             {
@@ -93,6 +108,8 @@ namespace PlateCharExtractor.ViewModel
                     .Select(x => new ThumbnailModel() {ThumbAddr = x}).ToList();
                 UnderOperationImage = null;
                 SubmitCommand = new RelayCommand(SubmitSelector);
+                CharSelectorTop = 50;
+                CharSelectorLeft = 50;
             }
         }
 

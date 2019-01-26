@@ -68,7 +68,6 @@ namespace PlateCharExtractor.Controls
         private void CharSelector_LayoutUpdated(object sender, EventArgs e)
         {
             UpdateDpValue();
-            Debug.WriteLine("CharSelector_LayoutUpdated");
         }
 
         private void UpdateDpValue()
