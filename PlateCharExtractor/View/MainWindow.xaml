@@ -102,7 +102,11 @@
                                             MouseUp="CharSelector_MouseUp"
                                             >
 
-                                <controls:CharSelector SelectorGridSizes="{Binding PlateSelectorGridSizes , Mode=TwoWay}"/>
+                                <controls:CharSelector RenderTransformOrigin="0.5,0.5" SelectorGridSizes="{Binding PlateSelectorGridSizes , Mode=TwoWay}">
+                                    <controls:CharSelector.RenderTransform>
+                                        <RotateTransform  Angle="{Binding CharSelectorRotationAngle, Mode=TwoWay}"/>
+                                    </controls:CharSelector.RenderTransform>
+                                </controls:CharSelector>
 
                             </ContentControl>
 

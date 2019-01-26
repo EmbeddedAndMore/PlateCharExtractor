@@ -61,11 +61,21 @@ namespace PlateCharExtractor.ViewModel
             }
         }
 
+        private int _charSelectorRotationAngle;
+
+        public int CharSelectorRotationAngle
+        {
+            get => _charSelectorRotationAngle;
+            set { _charSelectorRotationAngle = value; }
+        }
+
+        public List<Tuple<double, double, double>> PlateSelectorGridSizes { get; set; }
+        
         public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseDown { get; private set;}
         public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseMove { get; private set; }
         public RelayCommand<MouseButtonEventArgs> PlateDetector_MouseUp { get; private set; }
 
-        public List<Tuple<double, double, double>> PlateSelectorGridSizes { get; set; }
+        
 
         public RelayCommand SubmitCommand { get; private set; }
 
